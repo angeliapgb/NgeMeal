@@ -10,8 +10,8 @@ use App\Models\KampusBinus as KampusBinusModel;
 
 class PageController extends Controller
 {
-    public function tampil(){
-        return view('layouts.master');
+    public function login(){
+        return view('login');
     }
 
     public function mahasiswa(){

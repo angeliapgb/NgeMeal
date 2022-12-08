@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKampusBinusTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,18 @@ class CreateKampusBinusTable extends Migration
      */
     public function up()
     {
-        Schema::create('kampus_binus', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kampus');
-            $table->text('alamat');
+
+            $table->foreignId('user_id');
+
+            $table->date('orderDate');
+            $table->string('item');
+            $table->string('status');
+            $table->text('address');
+
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }
@@ -28,6 +36,6 @@ class CreateKampusBinusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kampus_binus');
+        Schema::dropIfExists('orders');
     }
 }
